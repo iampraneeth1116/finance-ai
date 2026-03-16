@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { TrendingUp, TrendingDown, DollarSign, ShoppingCart, Zap } from 'lucide-react';
 
-const API_BASE = 'http://localhost:4000/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -142,8 +142,8 @@ export default function ScenarioSimulator() {
                                         key={m}
                                         onClick={() => setMonths(m)}
                                         className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${months === m
-                                                ? 'bg-emerald-500 text-white shadow-sm'
-                                                : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                                            ? 'bg-emerald-500 text-white shadow-sm'
+                                            : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
                                             }`}
                                     >
                                         {m}m
@@ -195,8 +195,8 @@ export default function ScenarioSimulator() {
                             </div>
 
                             <div className={`flex items-start gap-3 p-3 rounded-xl text-sm border ${result.projectedMonthlySavings >= 0
-                                    ? 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300'
-                                    : 'bg-rose-50 dark:bg-rose-500/10 border-rose-200 dark:border-rose-500/20 text-rose-700 dark:text-rose-300'
+                                ? 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300'
+                                : 'bg-rose-50 dark:bg-rose-500/10 border-rose-200 dark:border-rose-500/20 text-rose-700 dark:text-rose-300'
                                 }`}>
                                 {result.projectedMonthlySavings >= 0
                                     ? <TrendingUp className="w-4 h-4 shrink-0 mt-0.5" />

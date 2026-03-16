@@ -36,7 +36,11 @@ app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Finance AI Backend is running!' });
 });
 
-// Start server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// Start server locally (Vercel uses the exported app instead)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+}
+
+export default app;

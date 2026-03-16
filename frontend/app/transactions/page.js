@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Plus, Upload, Trash2, Edit2 } from 'lucide-react';
 
 export default function Transactions() {
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -22,7 +23,7 @@ export default function Transactions() {
             const token = localStorage.getItem('token');
             if (!token) return; // Need to handle unauthorized state better eventually
 
-            const res = await fetch('http://localhost:4000/api/transactions', {
+            const res = await fetch(`${API_BASE}/transactions`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             if (res.ok) {
@@ -40,7 +41,7 @@ export default function Transactions() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:4000/api/transactions', {
+            const res = await fetch(`${API_BASE}/transactions`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ export default function Transactions() {
     const handleDelete = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch(`http://localhost:4000/api/transactions/${id}`, {
+            const res = await fetch(`${API_BASE}/transactions/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -85,7 +86,7 @@ export default function Transactions() {
 
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:4000/api/transactions/upload', {
+            const res = await fetch(`${API_BASE}/transactions/upload`, {
                 method: 'POST',
                 headers: { Authorization: `Bearer ${token}` },
                 body: formData,

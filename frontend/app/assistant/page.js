@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Send, Bot, User, Sparkles, Loader2 } from 'lucide-react';
 
-const API_BASE = 'http://localhost:4000/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 const SUGGESTED_QUESTIONS = [
     "How much did I spend this month?",
@@ -20,8 +20,8 @@ function MessageBubble({ message }) {
                 {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
             </div>
             <div className={`max-w-[75%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${isUser
-                    ? 'bg-blue-600 text-white rounded-tr-sm'
-                    : 'bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 rounded-tl-sm shadow-sm'
+                ? 'bg-blue-600 text-white rounded-tr-sm'
+                : 'bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 rounded-tl-sm shadow-sm'
                 }`}>
                 {message.text}
             </div>

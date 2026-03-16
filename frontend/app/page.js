@@ -9,7 +9,7 @@ import { SkeletonCard, SkeletonChart } from './components/Skeleton';
 
 const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6'];
 
-const API_BASE = 'http://localhost:4000/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 function StatCard({ title, value, icon: Icon, trend, trendLabel, color }) {
   return (

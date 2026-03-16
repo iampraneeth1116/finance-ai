@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Trash2, Edit2, TrendingDown, X, Check } from 'lucide-react';
 
-const API_BASE = 'http://localhost:4000/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

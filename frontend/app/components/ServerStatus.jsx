@@ -5,7 +5,8 @@ export default function ServerStatus() {
     const [status, setStatus] = useState('Checking API...');
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/health')
+        const base = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+        fetch(`${base}/health`)
             .then(res => res.json())
             .then(data => setStatus('API connected'))
             .catch(err => setStatus('API disconnected'));
