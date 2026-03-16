@@ -2,16 +2,18 @@
 import { Bell, Search, Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import ServerStatus from './ServerStatus';
+import { useMobileNav } from '../context/MobileNavContext';
 
 export default function Navbar() {
     const pathname = usePathname();
+    const { setIsMobileNavOpen } = useMobileNav();
 
     if (pathname === '/login' || pathname === '/register') return null;
 
     return (
         <header className="h-16 border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md flex items-center justify-between px-6 sticky top-0 z-10 shrink-0">
             <div className="flex items-center gap-4">
-                <button className="md:hidden text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200">
+                <button onClick={() => setIsMobileNavOpen(true)} className="md:hidden text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200">
                     <Menu className="w-6 h-6" />
                 </button>
                 <ServerStatus />

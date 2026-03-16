@@ -3,7 +3,7 @@ import "./globals.css";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import AuthGuard from "./components/AuthGuard";
-
+import { MobileNavProvider } from "./context/MobileNavContext";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -29,15 +29,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-50 h-screen overflow-hidden flex`}>
-        <Sidebar />
-        <div className="flex-1 flex flex-col h-full relative overflow-hidden">
-          <Navbar />
-          <main className="flex-1 overflow-y-auto p-6 md:p-8">
-            <div className="max-w-6xl mx-auto space-y-6">
-              <AuthGuard>{children}</AuthGuard>
-            </div>
-          </main>
-        </div>
+        <MobileNavProvider>
+          <Sidebar />
+          <div className="flex-1 flex flex-col h-full relative overflow-hidden">
+            <Navbar />
+            <main className="flex-1 overflow-y-auto p-6 md:p-8">
+              <div className="max-w-6xl mx-auto space-y-6">
+                <AuthGuard>{children}</AuthGuard>
+              </div>
+            </main>
+          </div>
+        </MobileNavProvider>
       </body>
     </html>
   );
