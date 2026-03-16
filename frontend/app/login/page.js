@@ -11,6 +11,11 @@ export default function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const fillDemo = () => {
+        setEmail('alice@example.com');
+        setPassword('password123');
+    };
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -57,6 +62,21 @@ export default function Login() {
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white dark:bg-zinc-900 py-8 px-4 shadow sm:rounded-2xl sm:px-10 border border-zinc-200 dark:border-zinc-800">
                     <form className="space-y-6" onSubmit={handleLogin}>
+                        {/* Demo credentials banner */}
+                        <div className="flex items-center justify-between bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl px-4 py-3">
+                            <div>
+                                <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Demo Account</p>
+                                <p className="text-xs text-emerald-600 dark:text-emerald-400/80 mt-0.5">alice@example.com · password123</p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={fillDemo}
+                                className="text-xs font-medium px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
+                            >
+                                Use Demo
+                            </button>
+                        </div>
+
                         {error && (
                             <div className="bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 p-3 rounded-lg text-sm border border-rose-200 dark:border-rose-500/20">
                                 {error}

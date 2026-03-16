@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import AuthGuard from "./components/AuthGuard";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +34,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main className="flex-1 overflow-y-auto p-6 md:p-8">
             <div className="max-w-6xl mx-auto space-y-6">
-              {children}
+              <AuthGuard>{children}</AuthGuard>
             </div>
           </main>
         </div>
